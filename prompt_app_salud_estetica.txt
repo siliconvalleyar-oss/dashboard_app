@@ -1,0 +1,533 @@
+APP FLUTTER
+
+ 
+Actúa como un Arquitecto de Software Senior especializado en Flutter, UX/UI, SaaS Dashboards, Business Intelligence y aplicaciones Enterprise.
+
+Tu objetivo es generar una aplicación Flutter completa que replique visualmente un dashboard analítico premium similar a los dashboards modernos de Stripe, Linear, Vercel, Notion Analytics, Tableau, Power BI y plataformas Fintech de última generación.
+
+========================================
+OBJETIVO GENERAL
+========================================
+
+Crear una aplicación Flutter completamente funcional para Android, iOS, Web, Windows, Linux y MacOS.
+
+La aplicación debe ser responsive y adaptarse automáticamente a:
+
+- Mobile
+- Tablet
+- Desktop
+- UltraWide
+
+Debe soportar:
+
+- Material Design 3
+- Dark Mode
+- Light Mode
+- Animaciones fluidas
+- Arquitectura limpia
+- Componentes reutilizables
+- Preparada para API REST
+
+========================================
+ESTILO VISUAL
+========================================
+
+Diseño premium.
+
+Minimalista.
+
+Tecnológico.
+
+Corporativo.
+
+Moderno.
+
+Inspirado en:
+
+- Stripe Dashboard
+- Linear
+- Framer
+- Vercel
+- Figma Analytics
+- Notion
+- Datadog
+- Tableau
+- Power BI
+
+Características visuales:
+
+- Bordes redondeados
+- Mucho espacio en blanco
+- Sombras suaves
+- Gradientes modernos
+- Tipografía elegante
+- Animaciones suaves
+- Gráficos brillantes
+- Tarjetas flotantes
+
+========================================
+PALETA DARK MODE
+========================================
+
+Background principal:
+
+#080808
+#0D0D0F
+#121214
+
+Cards:
+
+#17171A
+#1D1D21
+#222228
+
+Texto:
+
+#FFFFFF
+#DADADA
+#909090
+
+Gradientes:
+
+Cyan → Purple
+#4EF2FF → #B05CFF
+
+Orange → Pink
+#FFC14D → #FF5EA8
+
+Green → Blue
+#64FFC8 → #5DAEFF
+
+========================================
+PALETA LIGHT MODE
+========================================
+
+Background:
+
+#F6F8FB
+
+Cards:
+
+#FFFFFF
+
+Bordes:
+
+#E8EAF0
+
+Texto:
+
+#121212
+#4A4A4A
+#808080
+
+Mantener los mismos gradientes.
+
+========================================
+ESTRUCTURA GENERAL
+========================================
+
+Sidebar izquierda.
+
+Header superior.
+
+Área principal de widgets.
+
+Footer opcional.
+
+========================================
+SIDEBAR
+========================================
+
+Logo superior.
+
+Menú:
+
+Dashboard
+Analytics
+Marketing
+Customers
+Sales
+Reports
+Finance
+Storage
+Notifications
+Settings
+
+Cada item con icono.
+
+Hover animado.
+
+Indicador visual activo.
+
+Colapsable.
+
+========================================
+HEADER
+========================================
+
+Buscador global.
+
+Botón de notificaciones.
+
+Avatar usuario.
+
+Selector idioma.
+
+Selector Dark/Light.
+
+Indicador online.
+
+========================================
+GRID PRINCIPAL
+========================================
+
+Diseño Masonry/Grid.
+
+Desktop:
+
+4 columnas.
+
+Tablet:
+
+2 columnas.
+
+Mobile:
+
+1 columna.
+
+Todas las tarjetas deben ser reordenables.
+
+========================================
+WIDGET 1
+========================================
+
+Line Chart Analytics.
+
+Mostrar:
+
+- New Users
+- Lost Users
+
+Dos líneas animadas.
+
+Gradiente.
+
+Tooltip.
+
+Zoom.
+
+========================================
+WIDGET 2
+========================================
+
+Tracking Dashboard.
+
+Avatar usuario.
+
+Nombre.
+
+Fecha.
+
+Total completado.
+
+Promedio mensual.
+
+Tres gráficos donut:
+
+- New Users
+- Page Views
+- Returning Users
+
+Animados.
+
+========================================
+WIDGET 3
+========================================
+
+Radar Chart.
+
+Comparar:
+
+Sector A
+Sector B
+Sector C
+Sector D
+Sector E
+
+========================================
+WIDGET 4
+========================================
+
+Progress Bars.
+
+Mostrar:
+
+- New Users
+- Revenue
+- Sales
+- Engagement
+
+Barras con gradientes.
+
+========================================
+WIDGET 5
+========================================
+
+Area Analytics Chart.
+
+Mostrar:
+
+- New Users
+- Returning Users
+- Views
+
+Curvas suaves.
+
+Glow effect.
+
+========================================
+WIDGET 6
+========================================
+
+KPI Cards.
+
+Followers.
+
+Sales.
+
+Customers.
+
+Revenue.
+
+Contadores animados.
+
+========================================
+WIDGET 7
+========================================
+
+Wave Statistics.
+
+Gráfico de ondas.
+
+Likes.
+
+Views.
+
+Engagement.
+
+========================================
+WIDGET 8
+========================================
+
+Venn Diagram.
+
+Representar:
+
+Marketing
+Traffic
+Sales
+
+========================================
+WIDGET 9
+========================================
+
+Circular Progress.
+
+Indicadores:
+
+30%
+50%
+80%
+
+Animados.
+
+========================================
+WIDGET 10
+========================================
+
+Storage Monitor.
+
+Slider visual.
+
+10GB
+500GB
+1TB
+
+========================================
+WIDGET 11
+========================================
+
+Speed Monitor.
+
+Velocidad.
+
+Mbps.
+
+========================================
+WIDGET 12
+========================================
+
+Battery Widget.
+
+Indicador semicircular.
+
+Porcentaje.
+
+========================================
+WIDGET 13
+========================================
+
+Overview Table.
+
+Categoría.
+
+Cantidad.
+
+Porcentaje.
+
+Ordenamiento.
+
+Filtros.
+
+========================================
+WIDGET 14
+========================================
+
+Revenue Card.
+
+Avatar.
+
+Monto.
+
+Variación.
+
+Tendencia.
+
+========================================
+WIDGET 15
+========================================
+
+Sales Rings.
+
+Direct Sales.
+
+Resellers.
+
+========================================
+WIDGET 16
+========================================
+
+Hero Marketing Banner.
+
+Texto:
+
+Increase Your Audience
+
+Curvas fluidas.
+
+Gradientes animados.
+
+========================================
+WIDGET 17
+========================================
+
+Bottom KPI Section.
+
+Earnings.
+
+Sales.
+
+Trade.
+
+Yearly.
+
+========================================
+ANIMACIONES
+========================================
+
+Fade In.
+
+Slide In.
+
+Scale In.
+
+Hover.
+
+Ripple.
+
+Animated Counters.
+
+Animated Charts.
+
+Smooth Transitions.
+
+60 FPS.
+
+========================================
+TECNOLOGÍAS
+========================================
+
+Flutter Stable
+
+Riverpod
+
+GoRouter
+
+FlChart
+
+Google Fonts
+
+Responsive Framework
+
+Flutter Animate
+
+Material 3
+
+========================================
+ARQUITECTURA
+========================================
+
+lib/
+
+core/
+theme/
+services/
+repositories/
+models/
+features/
+widgets/
+screens/
+
+main.dart
+
+========================================
+REQUISITOS
+========================================
+
+Generar código completo.
+
+Generar estructura de carpetas.
+
+Generar modelos.
+
+Generar widgets.
+
+Generar tema oscuro.
+
+Generar tema claro.
+
+Generar datos mock JSON.
+
+Generar navegación.
+
+Generar dashboard totalmente funcional.
+
+Todo el código debe estar listo para compilar usando:
+
+flutter pub get
+flutter run
+
+No generar pseudocódigo.
+
+Generar implementación real de producción.
+ 
