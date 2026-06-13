@@ -18,7 +18,7 @@ class SaludSyncApp extends ConsumerWidget {
     final themeMode = ref.watch(themeProvider);
 
     return MaterialApp(
-      title: 'SaludSync — Analytics Dashboard',
+      title: 'Dashboard',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,

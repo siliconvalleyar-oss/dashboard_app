@@ -114,23 +114,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   static const double _baseHeight = 320;
 
-  List<_GridEntry> get _gridWidgets => [
-    _GridEntry(const LineChartAnalyticsWidget(), _baseHeight),
-    _GridEntry(const TrackingDashboardWidget(), 420),
-    _GridEntry(const RadarChartWidget(), _baseHeight + 40),
-    _GridEntry(const ProgressBarsWidget(), 280),
-    _GridEntry(const AreaAnalyticsChartWidget(), _baseHeight),
-    _GridEntry(const WaveStatisticsWidget(), 260),
-    _GridEntry(const VennDiagramWidget(), 280),
-    _GridEntry(const CircularProgressWidget(), 270),
-    _GridEntry(const StorageMonitorWidget(), 260),
-    _GridEntry(const SpeedMonitorWidget(), 290),
-    _GridEntry(const BatteryWidget(), 280),
-    _GridEntry(const OverviewTableWidget(), 420),
-    _GridEntry(const RevenueCardWidget(), 370),
-    _GridEntry(const SalesRingsWidget(), 280),
-    _GridEntry(const HeroMarketingBannerWidget(), 200),
-    _GridEntry(const BottomKpiSectionWidget(), 280),
+  static final List<_GridEntry> _gridWidgets = [
+    _GridEntry(LineChartAnalyticsWidget(), _baseHeight),
+    _GridEntry(TrackingDashboardWidget(), 420),
+    _GridEntry(RadarChartWidget(), _baseHeight + 40),
+    _GridEntry(ProgressBarsWidget(), 280),
+    _GridEntry(AreaAnalyticsChartWidget(), _baseHeight),
+    _GridEntry(WaveStatisticsWidget(), 260),
+    _GridEntry(VennDiagramWidget(), 280),
+    _GridEntry(CircularProgressWidget(), 270),
+    _GridEntry(StorageMonitorWidget(), 260),
+    _GridEntry(SpeedMonitorWidget(), 290),
+    _GridEntry(BatteryWidget(), 280),
+    _GridEntry(OverviewTableWidget(), 420),
+    _GridEntry(RevenueCardWidget(), 370),
+    _GridEntry(SalesRingsWidget(), 280),
+    _GridEntry(HeroMarketingBannerWidget(), 200),
+    _GridEntry(BottomKpiSectionWidget(), 280),
   ];
 }
 
