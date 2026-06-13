@@ -52,9 +52,12 @@ class CircularProgressWidget extends ConsumerWidget {
   }
 
   String _formatPrice(double value) {
-    if (value >= 1000) return '\$${(value).toStringAsFixed(0)}';
-    if (value >= 1) return '\$${(value).toStringAsFixed(2)}';
-    return '\$${(value).toStringAsFixed(4)}';
+    final n = value < 1
+        ? value.toStringAsFixed(4)
+        : value >= 10000
+            ? '${value ~/ 1000},${(value % 1000).toStringAsFixed(0).padLeft(3, '0')}'
+            : value.toStringAsFixed(value >= 100 ? 0 : 2);
+    return '\$$n';
   }
 
   Widget _animatedRing(BuildContext context, BottomKpi coin, Gradient gradient, bool isDark) {

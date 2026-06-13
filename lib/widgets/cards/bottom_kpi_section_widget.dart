@@ -50,13 +50,11 @@ class BottomKpiSectionWidget extends ConsumerWidget {
         Icon(kpi.icon, size: 20, color: kpi.isPositive ? AppColors.success : AppColors.error),
         const SizedBox(height: 8),
         Text(
-          kpi.value >= 1000000
-              ? '\$${(kpi.value / 1000000).toStringAsFixed(1)}M'
-              : kpi.value >= 1000
-                  ? '\$${(kpi.value / 1000).toStringAsFixed(0)}k'
-                  : kpi.value < 1
-                      ? '\$${kpi.value.toStringAsFixed(2)}'
-                      : '\$${kpi.value.toStringAsFixed(0)}',
+          kpi.value >= 10000
+              ? '\$${kpi.value ~/ 1000},${(kpi.value % 1000).toStringAsFixed(0).padLeft(3, '0')}'
+              : kpi.value < 1
+                  ? '\$${kpi.value.toStringAsFixed(4)}'
+                  : '\$${kpi.value.toStringAsFixed(kpi.value >= 100 ? 0 : 2)}',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700,
             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
           ),
