@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/extensions/context_extensions.dart';
+import '../../models/dashboard_models.dart';
 import '../../providers/app_providers.dart';
 
 class CircularProgressWidget extends ConsumerWidget {
@@ -13,9 +14,10 @@ class CircularProgressWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(dashboardProvider);
     final isDark = context.isDark;
-    final values = data.circularProgressValues;
+    final crypto = data.bottomKpis;
 
-    final labels = ['Onboarding', 'Engagement', 'Retention'];
+    const wanted = {'Bitcoin', 'Ethereum', 'XRP'};
+    final selected = crypto.where((c) => wanted.contains(c.label)).toList();
     final gradients = [AppColors.cyanPurple, AppColors.orangePink, AppColors.greenBlue];
 
     return Card(
@@ -30,17 +32,10 @@ class CircularProgressWidget extends ConsumerWidget {
             )),
             const SizedBox(height: 24),
             Row(
-              children: List.generate(values.length, (i) {
-                if (i >= labels.length) return const SizedBox();
+              children: List.generate(selected.length, (i) {
                 return Padding(
-                  padding: EdgeInsets.only(right: i < values.length - 1 ? 12 : 0),
-                  child: _animatedRing(
-                    context,
-                    values[i],
-                    gradients[i % gradients.length],
-                    labels[i % labels.length],
-                    isDark,
-                  ),
+                  padding: EdgeInsets.only(right: i < selected.length - 1 ? 12 : 0),
+                  child: _animatedRing(context, selected[i], gradients[i], isDark),
                 );
               }),
             ),
@@ -50,10 +45,22 @@ class CircularProgressWidget extends ConsumerWidget {
     ).animate().fadeIn(duration: 500.ms, delay: 300.ms);
   }
 
-  Widget _animatedRing(BuildContext context, double percent, Gradient gradient, String label, bool isDark) {
+  double _ringValue(BottomKpi coin) {
+    const refs = {'Bitcoin': 150000.0, 'Ethereum': 5000.0, 'XRP': 3.0};
+    final max = refs[coin.label] ?? 100.0;
+    return (coin.value / max * 100).clamp(0, 100);
+  }
+
+  String _formatPrice(double value) {
+    if (value >= 1000) return '\$${(value).toStringAsFixed(0)}';
+    if (value >= 1) return '\$${(value).toStringAsFixed(2)}';
+    return '\$${(value).toStringAsFixed(4)}';
+  }
+
+  Widget _animatedRing(BuildContext context, BottomKpi coin, Gradient gradient, bool isDark) {
     return Expanded(
       child: TweenAnimationBuilder<double>(
-        tween: Tween(begin: 0, end: percent),
+        tween: Tween(begin: 0, end: _ringValue(coin)),
         duration: 1500.ms,
         curve: Curves.easeOutCubic,
         builder: (context, value, child) {
@@ -71,11 +78,27 @@ class CircularProgressWidget extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Text('${value.toInt()}%', style: TextStyle(
-                fontSize: 16, fontWeight: FontWeight.w700,
+              Text(_formatPrice(coin.value), style: TextStyle(
+                fontSize: 15, fontWeight: FontWeight.w700,
                 color: gradient.colors.first,
               )),
-              Text(label, style: TextStyle(
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    coin.isPositive ? Icons.arrow_upward_rounded : Icons.arrow_downward_rounded,
+                    size: 10,
+                    color: coin.isPositive ? AppColors.success : AppColors.error,
+                  ),
+                  const SizedBox(width: 2),
+                  Text('${coin.change.toStringAsFixed(1)}%', style: TextStyle(
+                    fontSize: 10,
+                    color: coin.isPositive ? AppColors.success : AppColors.error,
+                  )),
+                ],
+              ),
+              const SizedBox(height: 2),
+              Text(coin.label, style: TextStyle(
                 fontSize: 10, color: isDark ? AppColors.darkTextTertiary : AppColors.lightTextTertiary,
               )),
             ],
