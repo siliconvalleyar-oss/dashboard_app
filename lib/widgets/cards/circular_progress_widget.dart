@@ -6,68 +6,17 @@ import '../../core/theme/app_colors.dart';
 import '../../core/extensions/context_extensions.dart';
 import '../../providers/app_providers.dart';
 
-class CircularProgressWidget extends ConsumerStatefulWidget {
+class CircularProgressWidget extends ConsumerWidget {
   const CircularProgressWidget({super.key});
 
   @override
-  ConsumerState<CircularProgressWidget> createState() => _CircularProgressWidgetState();
-}
-
-class _CircularProgressWidgetState extends ConsumerState<CircularProgressWidget> with TickerProviderStateMixin {
-  late AnimationController _ctrl1;
-  late AnimationController _ctrl2;
-  late AnimationController _ctrl3;
-  int _lastSeed = -1;
-
-  @override
-  void initState() {
-    super.initState();
-    _initControllers();
-  }
-
-  void _initControllers() {
-    _ctrl1 = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200));
-    _ctrl2 = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200));
-    _ctrl3 = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200));
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _ctrl1.forward(from: 0);
-      Future.delayed(const Duration(milliseconds: 200), () => _ctrl2.forward(from: 0));
-      Future.delayed(const Duration(milliseconds: 400), () => _ctrl3.forward(from: 0));
-    });
-  }
-
-  void _restartAnimations() {
-    _ctrl1.dispose();
-    _ctrl2.dispose();
-    _ctrl3.dispose();
-    _initControllers();
-  }
-
-  @override
-  void dispose() {
-    _ctrl1.dispose();
-    _ctrl2.dispose();
-    _ctrl3.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(dashboardProvider);
     final isDark = context.isDark;
-    final seed = data.animationSeed;
     final values = data.circularProgressValues;
-
-    if (seed != _lastSeed && _lastSeed != -1) {
-      _lastSeed = seed;
-      WidgetsBinding.instance.addPostFrameCallback((_) => _restartAnimations());
-    } else if (_lastSeed == -1) {
-      _lastSeed = seed;
-    }
 
     final labels = ['Onboarding', 'Engagement', 'Retention'];
     final gradients = [AppColors.cyanPurple, AppColors.orangePink, AppColors.greenBlue];
-    final controllers = [_ctrl1, _ctrl2, _ctrl3];
 
     return Card(
       child: Padding(
@@ -90,7 +39,6 @@ class _CircularProgressWidgetState extends ConsumerState<CircularProgressWidget>
                     values[i],
                     gradients[i % gradients.length],
                     labels[i % labels.length],
-                    controllers[i % controllers.length],
                     isDark,
                   ),
                 );
@@ -102,11 +50,13 @@ class _CircularProgressWidgetState extends ConsumerState<CircularProgressWidget>
     ).animate().fadeIn(duration: 500.ms, delay: 300.ms);
   }
 
-  Widget _animatedRing(BuildContext context, double percent, Gradient gradient, String label, AnimationController ctrl, bool isDark) {
+  Widget _animatedRing(BuildContext context, double percent, Gradient gradient, String label, bool isDark) {
     return Expanded(
-      child: AnimatedBuilder(
-        animation: ctrl,
-        builder: (context, child) {
+      child: TweenAnimationBuilder<double>(
+        tween: Tween(begin: 0, end: percent),
+        duration: 1500.ms,
+        curve: Curves.easeOutCubic,
+        builder: (context, value, child) {
           return Column(
             children: [
               SizedBox(
@@ -114,14 +64,14 @@ class _CircularProgressWidgetState extends ConsumerState<CircularProgressWidget>
                 height: 72,
                 child: CustomPaint(
                   painter: _RingPainter(
-                    progress: ctrl.value * percent / 100,
+                    progress: value / 100,
                     gradient: gradient,
                     isDark: isDark,
                   ),
                 ),
               ),
               const SizedBox(height: 8),
-              Text('${percent.toInt()}%', style: TextStyle(
+              Text('${value.toInt()}%', style: TextStyle(
                 fontSize: 16, fontWeight: FontWeight.w700,
                 color: gradient.colors.first,
               )),
