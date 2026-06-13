@@ -54,7 +54,9 @@ class BottomKpiSectionWidget extends ConsumerWidget {
               ? '\$${(kpi.value / 1000000).toStringAsFixed(1)}M'
               : kpi.value >= 1000
                   ? '\$${(kpi.value / 1000).toStringAsFixed(0)}k'
-                  : '\$${kpi.value.toStringAsFixed(0)}',
+                  : kpi.value < 1
+                      ? '\$${kpi.value.toStringAsFixed(2)}'
+                      : '\$${kpi.value.toStringAsFixed(0)}',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700,
             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
           ),

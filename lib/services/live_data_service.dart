@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:battery_plus/battery_plus.dart';
 import '../models/dashboard_models.dart';
 
@@ -51,6 +53,42 @@ class LiveDataService {
       return 0;
     } catch (_) {
       return 0;
+    }
+  }
+
+  static Future<List<BottomKpi>> fetchCryptoPrices() async {
+    try {
+      final client = HttpClient();
+      final request = await client.getUrl(Uri.parse(
+        'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple&vs_currencies=usd&include_24hr_change=true',
+      ));
+      final response = await request.close();
+      final body = await response.transform(utf8.decoder).join();
+      final json = jsonDecode(body) as Map<String, dynamic>;
+
+      final cryptoConfig = {
+        'bitcoin':  {'label': 'Bitcoin',  'icon': Icons.currency_bitcoin},
+        'ethereum': {'label': 'Ethereum', 'icon': Icons.monetization_on_outlined},
+        'solana':   {'label': 'Solana',   'icon': Icons.brightness_1},
+        'ripple':   {'label': 'XRP',      'icon': Icons.opacity},
+      };
+
+      return cryptoConfig.entries.map((entry) {
+        final id = entry.key;
+        final cfg = entry.value;
+        final data = json[id] as Map<String, dynamic>?;
+        final price = data?['usd'] as num? ?? 0;
+        final change = data?['usd_24h_change'] as num? ?? 0;
+        return BottomKpi(
+          label: cfg['label'] as String,
+          value: price is int ? price.toDouble() : (price as double),
+          change: change is int ? change.toDouble() : (change as double),
+          icon: cfg['icon'] as IconData,
+          isPositive: (change is int ? change.toDouble() : (change as double)) >= 0,
+        );
+      }).toList();
+    } catch (_) {
+      return [];
     }
   }
 

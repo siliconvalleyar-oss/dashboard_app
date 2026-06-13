@@ -272,12 +272,12 @@ class MockDataService {
       directSales: 65,
       resellerSales: 35,
 
-      // ── Bottom KPIs ───────────────────────────────────────────────
+      // ── Crypto Prices (Yearly Performance) ────────────────────────
       bottomKpis: [
-        BottomKpi(label: 'Earnings', value: 428500, change: 15.3, icon: Icons.trending_up_rounded, isPositive: true),
-        BottomKpi(label: 'Sales', value: 156800, change: -2.1, icon: Icons.trending_down_rounded, isPositive: false),
-        BottomKpi(label: 'Trade', value: 89300, change: 8.7, icon: Icons.trending_up_rounded, isPositive: true),
-        BottomKpi(label: 'Yearly', value: 2450000, change: 22.4, icon: Icons.trending_up_rounded, isPositive: true),
+        BottomKpi(label: 'Bitcoin', value: 67520, change: 3.2, icon: Icons.currency_bitcoin, isPositive: true),
+        BottomKpi(label: 'Ethereum', value: 3480, change: -1.5, icon: Icons.monetization_on_outlined, isPositive: false),
+        BottomKpi(label: 'Solana', value: 142.50, change: 5.8, icon: Icons.circle_outlined, isPositive: true),
+        BottomKpi(label: 'XRP', value: 0.52, change: -0.3, icon: Icons.water_drop_outlined, isPositive: false),
       ],
 
       circularProgressValues: [30, 50, 80],

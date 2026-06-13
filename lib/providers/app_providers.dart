@@ -27,6 +27,7 @@ class DashboardNotifier extends StateNotifier<DashboardData> {
   late Timer _mockTimer;
   late Timer _batteryTimer;
   late Timer _pingTimer;
+  late Timer _cryptoTimer;
 
   DashboardNotifier() : super(MockDataService.generate()) {
     _mockTimer = Timer.periodic(const Duration(seconds: 2), (_) {
@@ -38,8 +39,12 @@ class DashboardNotifier extends StateNotifier<DashboardData> {
     _pingTimer = Timer.periodic(const Duration(seconds: 4), (_) {
       _updatePing();
     });
+    _cryptoTimer = Timer.periodic(const Duration(seconds: 30), (_) {
+      _updateCrypto();
+    });
     _updateBattery();
     _updatePing();
+    _updateCrypto();
   }
 
   void fluctuate() {
@@ -66,11 +71,19 @@ class DashboardNotifier extends StateNotifier<DashboardData> {
     ));
   }
 
+  Future<void> _updateCrypto() async {
+    final prices = await LiveDataService.fetchCryptoPrices();
+    if (prices.isNotEmpty) {
+      state = state.copyWith(bottomKpis: prices);
+    }
+  }
+
   @override
   void dispose() {
     _mockTimer.cancel();
     _batteryTimer.cancel();
     _pingTimer.cancel();
+    _cryptoTimer.cancel();
     super.dispose();
   }
 }
