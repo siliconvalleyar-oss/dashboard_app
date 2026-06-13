@@ -80,10 +80,7 @@ class MockDataService {
       directSales: _vary(current.directSales, 0.04).clamp(20, 80),
       resellerSales: _vary(current.resellerSales, 0.04).clamp(20, 80),
 
-      bottomKpis: current.bottomKpis.map((b) => BottomKpi(
-        label: b.label, value: _vary(b.value, 0.04),
-        change: _vary(b.change, 0.12), icon: b.icon, isPositive: b.isPositive,
-      )).toList(),
+      bottomKpis: current.bottomKpis,
 
       circularProgressValues: current.circularProgressValues.map((v) =>
         _vary(v, 0.06).clamp(5.0, 95.0) as double
