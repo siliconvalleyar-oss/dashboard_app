@@ -59,7 +59,7 @@ class SidebarWidget extends ConsumerWidget {
             child: const Center(child: Icon(Icons.health_and_safety_rounded, color: Colors.white, size: 20))),
           if (!collapsed) ...[
             const SizedBox(width: 12),
-            Text('SaludSync', style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700, color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary)),
+            Text('Dashboard', style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700, color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary)),
           ],
         ],
       ),

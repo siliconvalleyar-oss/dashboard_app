@@ -14,7 +14,7 @@ void main() {
 
   runApp(
     const ProviderScope(
-      child: SaludSyncApp(),
+      child: DashboardApp(),
     ),
   );
 }

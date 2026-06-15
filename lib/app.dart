@@ -10,8 +10,8 @@ import 'widgets/sidebar/sidebar_widget.dart';
 import 'widgets/header/header_widget.dart';
 import 'screens/dashboard_screen.dart';
 
-class SaludSyncApp extends ConsumerWidget {
-  const SaludSyncApp({super.key});
+class DashboardApp extends ConsumerWidget {
+  const DashboardApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
